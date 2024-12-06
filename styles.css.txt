@@ -1,0 +1,55 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f8ff;
+  text-align: center;
+}
+
+header {
+  background: #008080;
+  color: white;
+  padding: 20px;
+}
+
+#game-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.word-bank, .drop-area {
+  border: 2px dashed #008080;
+  padding: 20px;
+  width: 45%;
+}
+
+.word, .drop-zone {
+  background: #e0f7fa;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #008080;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.drop-zone {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dragging {
+  opacity: 0.6;
+}
+
+.correct {
+  background-color: #c8e6c9;
+}
+
+.wrong {
+  background-color: #ffcdd2;
+}

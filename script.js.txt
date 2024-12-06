@@ -1,0 +1,59 @@
+// script.js
+let score = 0;
+
+const words = document.querySelectorAll('.word');
+const dropZones = document.querySelectorAll('.drop-zone');
+const scoreValue = document.getElementById('score-value');
+
+// Drag and Drop Events
+words.forEach(word => {
+  word.addEventListener('dragstart', dragStart);
+  word.addEventListener('dragend', dragEnd);
+});
+
+dropZones.forEach(zone => {
+  zone.addEventListener('dragover', dragOver);
+  zone.addEventListener('drop', drop);
+});
+
+function dragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.id);
+  e.target.classList.add('dragging');
+}
+
+function dragEnd(e) {
+  e.target.classList.remove('dragging');
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function drop(e) {
+  e.preventDefault();
+  const wordId = e.dataTransfer.getData('text/plain');
+  const word = document.getElementById(wordId);
+
+  // Check if the drop is correct
+  const correctMatches = {
+    apple: 'fruit',
+    cat: 'animal',
+    house: 'building'
+  };
+
+  if (correctMatches[wordId] === e.target.id) {
+    e.target.classList.add('correct');
+    word.remove();
+    score += 10;
+  } else {
+    e.target.classList.add('wrong');
+    score -= 5;
+  }
+
+  scoreValue.textContent = score;
+
+  // Remove the feedback after a short delay
+  setTimeout(() => {
+    e.target.classList.remove('correct', 'wrong');
+  }, 1000);
+}
